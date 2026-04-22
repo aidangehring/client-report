@@ -33,8 +33,8 @@ def get_series(data, data_type, shoe, joint, axis, stat='Mean'):
         return None
     label_map= {
         'angles': 'Angles',
-        'moments': 'Moments',
-        'powers': 'Powers',
+        'moments': 'Moment',
+        'powers': 'Power',
         'grf': 'GRF'
     }
     metric_label= f'{joint} {label_map[data_type]}'

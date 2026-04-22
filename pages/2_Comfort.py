@@ -73,3 +73,4 @@ if st.button("I want to maximise comfort during running, show me the shoes with 
         st.subheader(shoe['name'])
         st.image(shoe['image'])
         st.write('Comment from testing:' + shoe['comfort comments'])
+
