@@ -1,0 +1,21 @@
+	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 1.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 1.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 1.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 1.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 2.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 2.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 2.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 2.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 3.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 3.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 3.c3d	C:\Users\spsagehr\OneDrive - Liverpool John Moores University\Sports biomech\portfolio\TreadmillData\condition_2\Running trial 3.c3d
+	LHS	LOFF	RHS	ROFF	LHS	LOFF	RHS	ROFF	LHS	LOFF	RHS	ROFF
+	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL
+	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL
+ITEM	0	0	0	0	0	0	0	0	0	0	0	0
+1	0.04	0.34	0.40	0.68	0.32	0.60	0.68	0.25	0.22	0.50	0.57	0.14
+2	0.74	1.03	1.09	1.37	1.02	1.31	1.37	0.95	0.93	1.20	1.28	0.84
+3	1.43	1.72	1.78	2.07	1.73	2.01	2.07	1.66	1.63	1.63	1.99	1.56
+4	2.13	2.42	2.48	2.77	2.42	2.71	2.77	2.35	1.64	1.90	2.69	2.26
+5	2.83	3.13	3.18	3.46	3.12	3.41	3.47	3.05	2.34	2.60	3.41	2.96
+6	3.52	3.81	3.87	4.15	3.82	4.11	4.17	3.76	3.04	3.04	4.12	3.67
+7	4.22	4.51	4.58	4.86	4.51	4.51	4.86	4.45	3.05	3.32	4.84	4.39
+8	4.92	5.21	5.26	5.55	4.52	4.80	5.56	5.15	3.77	4.04	5.55	5.11
+9	5.62	5.91	5.96	6.25	5.22	5.50	6.26	5.84	4.48	4.76	6.27	5.82
+10	6.30	6.60	6.66	6.95	5.91	5.91	6.96	6.53	5.20	5.47	6.98	6.54
+11	7.02	7.31	7.38	7.66	5.91	6.19	7.66	7.23	5.91	6.17	7.70	7.25
+12	7.73	8.01	8.07	8.07	6.60	6.88	8.36	7.94	6.62	6.89	8.42	7.97
+13	8.44	8.71	8.08	8.36	7.32	7.60	9.06	8.64	7.35	7.62	9.13	8.68
+14	9.14	9.42	8.79	9.07	8.01	8.29	9.75	9.34	8.06	8.33	9.85	9.39
+15	9.84		9.49	9.77	8.71	8.99			8.78	9.05		
+16					9.41	9.69			9.50	9.76		

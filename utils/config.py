@@ -12,6 +12,7 @@ images_path= "images/"
 dataframes= {}
 client_mass= 78
 client_weight= client_mass*9.81
+treadmill_speed_ms = 10 / 3.6
 
 Shoes= {
     'Spezial': {
@@ -46,14 +47,6 @@ Shoes= {
     }
 }
 
-variable_labels= {
-    'angles': 'Joint angle (deg)',
-    'moments': 'Joint moments (Nm)',
-    'powers': 'Joint powers (W)',
-    'grf': 'Ground reaction force (%BW)',
-    'impulse': 'Impulse (Ns)'
-}
-
 variable_options= {
     'angles': 'Angles',
     'moments': 'Moments',
@@ -61,12 +54,31 @@ variable_options= {
     'grf': 'GRF',
 }
 
-joints= [
-    'Left Ankle', 'Right Ankle',
-    'Left Knee', 'Right Knee',
-    'Left Hip', 'Right Hip'
-]
-
-axes= ['X', 'Y', 'Z']
+variable_config = {
+    'angles': {
+        'joints': ['Left Ankle','Right Ankle', 'Left Knee', 'Right Knee','Left Hip', 'Right Hip'],
+        'axis': 'X',
+        'label': 'Joint angle(deg)',
+        'clip_zero': False,
+    },
+    'moments': {
+        'joints': ['Left Ankle', 'Right Ankle', 'Left Knee', 'Right Knee'],
+        'axis': 'X',
+        'label': 'Joint moment (Nm)',
+        'clip_zero': False,
+    },
+    'powers': {
+        'joints': ['Left Ankle', 'Right Ankle'],
+        'axis': 'X',
+        'label': 'Ankle power (W)',
+        'clip_zero': True,
+    },
+    'grf': {
+        'joints': ['Left', 'Right'],
+        'axis': 'Z',
+        'label': 'Vertical GRF (%BW)',
+        'clip_zero': False,
+    },
+}
 
 

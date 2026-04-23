@@ -1,0 +1,20 @@
+	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 1.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 1.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 1.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 1.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 2.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 2.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 2.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 2.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 3.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 3.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 3.c3d	C:\Users\gehri\OneDrive - Liverpool John Moores University\Prof Practice\client report\running data\condition_3\Running trial 3.c3d
+	LHS	LOFF	RHS	ROFF	LHS	LOFF	RHS	ROFF	LHS	LOFF	RHS	ROFF
+	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL	EVENT_LABEL
+	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL	ORIGINAL
+ITEM	0	0	0	0	0	0	0	0	0	0	0	0
+1	0.61	0.21	0.26	0.56	0.40	0.69	0.05	0.34	0.44	0.73	0.08	0.36
+2	1.30	0.90	0.94	1.24	1.09	1.38	0.75	1.03	1.16	1.44	0.80	1.08
+3	2.00	1.59	1.65	1.94	1.81	2.10	1.46	1.74	1.89	2.19	1.53	1.80
+4	2.70	2.29	2.35	2.63	2.50	2.79	2.16	2.45	2.62	2.90	2.26	2.53
+5	3.38	2.99	3.04	3.33	3.21	3.50	2.86	3.14	3.33	3.62	2.98	3.25
+6	4.09	3.67	3.74	4.02	3.92	4.21	3.57	3.86	4.07	4.36	3.71	3.98
+7	4.77	4.38	4.44	4.72	4.62	4.92	4.27	4.56	4.78	5.07	4.43	4.71
+8	5.48	5.07	5.14	5.41	5.33	5.62	4.98	5.26	5.52	5.80	5.15	5.44
+9	6.17	5.76	5.82	6.11	6.03	6.32	5.67	5.96	6.23	6.52	5.87	6.16
+10	6.87	6.46	6.53	6.53	6.73	7.03	6.38	6.66	6.94	7.23	6.59	6.88
+11	7.56	7.17	6.53	6.81	7.43	7.73	7.09	7.37	7.67	7.95	7.31	7.60
+12	8.25	7.85	7.23	7.50	8.14	8.43	7.78	8.08	8.40	8.68	8.04	8.32
+13	8.94	8.54	7.91	8.19	8.86	9.15	8.50	8.78	9.13	9.41	8.76	9.05
+14	9.63	9.22	8.60	8.89	9.56	9.86	9.21	9.49	9.84		9.48	9.77
+15		9.92	9.29	9.57			9.92					

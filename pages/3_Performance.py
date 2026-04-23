@@ -1,9 +1,10 @@
 
 import streamlit as st
-from utils.data_loader import load_data, get_series
-from utils.config import variable_options,joints,axes, Shoes, variable_labels
+from utils.data_loader import load_data, get_series, load_events
+from utils.config import variable_options, variable_config, Shoes
 import plotly.graph_objects as go
-from utils.metrics import peak_power_gen
+from utils.metrics import peak_power_gen, step_lengths, cadence
+import pandas as pd
 st.title("Performance")
 st.write("This page will analyse the performance of the 3 shoes based on\
          kinetic and kinematic data collected during the testing sessions.")
@@ -13,18 +14,11 @@ data= load_data()
 
 variable_key= st.radio("Variable", list(variable_options.keys()), format_func= lambda k: variable_options[k], horizontal=True)
 
-ctrl1, ctrl2, ctrl3= st.columns (3)
+cfg = variable_config[variable_key]
+axis = cfg['axis']
+y_label = cfg['label']
 
-with ctrl1:
-    if variable_key =='grf':
-        side =st.radio ("Side", ['Left', 'Right'])
-        joint=side
-    else:
-        joint= st.selectbox("Joint", joints)
-with ctrl2:
-    axis= st.radio ("Axis", axes, horizontal=True)
-
-y_label= variable_labels[variable_key]
+joint = st.radio("Side" if variable_key == 'grf' else "Joint", cfg['joints'], horizontal=True)
 
 
 
@@ -64,11 +58,12 @@ fig.update_layout(
         tickfont=dict(size=11),
     ),
     yaxis=dict(
-        title= y_label,
+        title=y_label,
         zeroline=True,
-        zerolinecolor= '#333',
+        zerolinecolor='#333',
         zerolinewidth=1,
         tickfont=dict(size=11),
+        rangemode='tozero' if cfg['clip_zero'] else 'normal',
     ),
     legend=dict(
         borderwidth=1,
@@ -85,8 +80,6 @@ if variable_key== 'angles' and axis=='X':
                 This once again suggests that patterns changed from the typical optimal pattern to an alternative pattern to accomodate a reason\
                 to change such as pain or fatigue.")
 
-if variable_key== 'angles' and axis=='Y':
-    st.markdown("")
 
 if variable_key=='powers':
     with st.expander("Advanced Metrics", expanded=False):
@@ -108,8 +101,25 @@ if variable_key=='powers':
                     st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
 
 
+events = load_events()
 
-                                
+
+rows = []
+for shoe_key, shoe_info in Shoes.items():
+    events_df = events.get(shoe_key)
+    if events_df is None:
+        continue
+    df = step_lengths(events_df)
+    left = df[df['foot'] == 'L']
+    right = df[df['foot'] == 'R']
+    rows.append({
+        'Shoe': shoe_info['name'],
+        'Left step length (m)': round(left['step_length_m'].mean(), 3),
+        'Right step length (m)': round(right['step_length_m'].mean(), 3),
+        'Cadence (spm)': cadence(events_df),
+    })
+if rows:
+    st.dataframe(pd.DataFrame(rows).set_index('Shoe'), width='content')
 
 st.plotly_chart(fig, width='stretch')
 

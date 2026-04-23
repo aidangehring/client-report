@@ -45,6 +45,23 @@ def get_series(data, data_type, shoe, joint, axis, stat='Mean'):
         st.write(f"Data not found for {shoe} - {joint} {data_type} {axis}")
         return None
 
+def load_events():
+    events = {}
+    for file in os.listdir(assets_path):
+        if file.endswith('.txt') and file.startswith('events_'):
+            shoe_name = file.replace('events_', '').replace('.txt', '')
+            filepath = os.path.join(assets_path, file)
+            try:
+                # Row 0: file paths, row 1: event types (header), row 2: EVENT_LABEL, row 3: ORIGINAL, row 4: ITEM zeros
+                df = pd.read_csv(filepath, sep='\t', skiprows=[0, 2, 3, 4], header=0, index_col=0)
+                df.columns = [
+                    f'trial{i // 4 + 1}_{col.split(".")[0]}'
+                    for i, col in enumerate(df.columns)
+                ]
+                events[shoe_name] = df
+            except Exception as e:
+                st.write(f"Failed to load {file}: {e}")
+    return events
 
 
 
