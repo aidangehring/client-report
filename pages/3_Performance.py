@@ -71,14 +71,7 @@ fig.update_layout(
 )
 
 if variable_key== 'angles' and axis=='X':
-    st.markdown("The two main things to take note of in these angle plots are the solid the dark lines, which represents the average joint angle\
-                across all the strides taken during the run, but also the width of the shaded regions which represents the variation of the joint angles\
-                observed over the course of the 5 minute run. A larger range of average joint angle over a stride suggests that the body is allowing\
-                itself to progress through a full range of motion with no adaptations required. As this range decreases, the body is typically limiting\
-                the range of motion to compensate for some reason such as uncomfortability or fatigue. Additionally, a larger shaded area suggests that\
-                over the course of the run the athlete changed their joint angles either from stride to stride, or from capture period to capture period.\
-                This once again suggests that patterns changed from the typical optimal pattern to an alternative pattern to accomodate a reason\
-                to change such as pain or fatigue.")
+    st.markdown("This will be written up next. ")
 
 
 if variable_key=='powers':
