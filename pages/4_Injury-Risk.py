@@ -2,7 +2,7 @@ import streamlit as st
 from utils.data_loader import load_data, get_series
 from utils.config import variable_options,joints,axes, Shoes, variable_labels
 import plotly.graph_objects as go
-from utils.metrics import symmetry_index, impulse,loading_rate
+from utils.metrics import max_symmetry_index, impulse,loading_rate, min_symmetry_index
 
 st.title("Injury Risk")
 st.write ("This page will analyse kinetic and kinematic data collected\
@@ -78,14 +78,14 @@ fig.update_layout(
 )
 
 if variable_key=='angles':
-    with st.expander("Symmetry", expanded=False):
+    with st.expander("Max Angle Symmetry", expanded=False):
         if 'Left' in joint and 'angles' in variable_key:
             right_joint=joint.replace('Left', 'Right')
             sym_cols=st.columns(3)
             for col, (shoe_key,shoe_info) in zip(sym_cols,Shoes.items()):
                 left_s= get_series(data,variable_key,shoe_key,joint,axis)
                 right_s= get_series(data,variable_key,shoe_key, right_joint,axis)
-                si=symmetry_index(left_s,right_s)
+                si=max_symmetry_index(left_s,right_s)
                 with col: 
                     st.markdown(f"**{shoe_info['name']}**")
                     st.metric("Symmetry of sides", f"{si:.1f}%" if si is not None else "N/A")
@@ -95,7 +95,28 @@ if variable_key=='angles':
             for col, (shoe_key,shoe_info) in zip(sym_cols,Shoes.items()):
                 right_s= get_series(data,variable_key,shoe_key,joint,axis)
                 left_s=get_series(data,variable_key,shoe_key,left_joint,axis)
-                si=symmetry_index(right_s,left_s)
+                si=max_symmetry_index(right_s,left_s)
+                with col: 
+                    st.markdown(f"**{shoe_info['name']}**")
+                    st.metric("Symmetry of sides", f"{si:.1f}%" if si is not None else "N/A")
+    with st.expander("Minimum Angle Symmetry", expanded=False):
+        if 'Left' in joint and 'angles' in variable_key:
+            right_joint=joint.replace('Left', 'Right')
+            sym_cols=st.columns(3)
+            for col, (shoe_key,shoe_info) in zip(sym_cols,Shoes.items()):
+                left_s= get_series(data,variable_key,shoe_key,joint,axis)
+                right_s= get_series(data,variable_key,shoe_key, right_joint,axis)
+                si=min_symmetry_index(left_s,right_s)
+                with col: 
+                    st.markdown(f"**{shoe_info['name']}**")
+                    st.metric("Symmetry of sides", f"{si:.1f}%" if si is not None else "N/A")
+        if 'Right' in joint and 'angles' in variable_key:
+            left_joint= joint.replace('Right', 'Left')
+            sym_cols=st.columns(3)
+            for col, (shoe_key,shoe_info) in zip(sym_cols,Shoes.items()):
+                right_s= get_series(data,variable_key,shoe_key,joint,axis)
+                left_s=get_series(data,variable_key,shoe_key,left_joint,axis)
+                si=min_symmetry_index(right_s,left_s)
                 with col: 
                     st.markdown(f"**{shoe_info['name']}**")
                     st.metric("Symmetry of sides", f"{si:.1f}%" if si is not None else "N/A")

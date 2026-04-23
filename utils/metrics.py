@@ -39,14 +39,22 @@ def loading_rate(series, stance_end=40):
     
     return round(rate, 4)
 
-def symmetry_index(left_series, right_series):
+def max_symmetry_index(left_series, right_series): #Robinson and Nigg, 1987
     if left_series is None or right_series is None:
         return None
     left_peak= left_series.max()
     right_peak= right_series.max()
-    if (left_peak-right_peak) == 0:
+    if (left_peak+right_peak) == 0:
         return None
     si=abs(left_peak-right_peak)/((left_peak+right_peak)/2)*100
     return round (si,2)
 
-    
+def min_symmetry_index(left_series, right_series): #Robinson and Nigg, 1987
+    if left_series is None or right_series is None:
+        return None
+    left_peak= left_series.min()
+    right_peak= right_series.min()
+    if (left_peak+right_peak) == 0:
+        return None
+    si=abs((left_peak-right_peak)/((left_peak+right_peak)/2))*100
+    return round (si,2)
