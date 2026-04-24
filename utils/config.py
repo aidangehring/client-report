@@ -81,4 +81,22 @@ variable_config = {
     },
 }
 
+sagittal_info={
+    'Dorsiflexion/plantarflexion':{
+        'image':'images/dorsiflexion.jpg',
+        'information': 'Dorsiflexion, which can be thought about as moving the front of the foot up relative to the heel, is represented as a positive angle\
+            on the curve. Plantarflexion, which can be thought of as moving the front of the foot down realtive to the heel, is represented as a negative angle.'
+    },
+    'Knee Flexion':{
+        'image': 'images/knee_flexion.png',
+        'information': 'Knee flexion is the bending of the knee, in which an increase of knee knee flexion on the plot represents an increased bending of the knee.\
+            Conversely, if the knee flexion angle decreases the leg is straigthening, with a value of 0 degrees representing a straight leg.'
+    },
+    'Hip flexion': {
+        'image': 'images/hip_flexion.png',
+        'information': 'Hip flexion represents the lifting of the leg veritcally, as would be done during a marching movement. An increase in the hip flexion angle\
+            represents a higher lift of the leg. Hip extension, which would be a negative angle on this plot, represents the leg as being behind the rest of the\
+                body, as you would see when you push off your back leg when walking.'
+    }
+}
 
