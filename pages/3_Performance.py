@@ -114,24 +114,24 @@ fig.update_layout(
 
 
 
-if variable_key=='powers':
-    with st.expander("Advanced Metrics", expanded=False):
-        if 'Left' in joint and 'powers' in variable_key:
-            pow_cols=st.columns(3)
-            for col, (shoe_key,shoe_info) in zip(pow_cols,Shoes.items()):
-                left_p= get_series(data,variable_key,shoe_key,joint,axis)
-                pow=peak_power_gen(left_p)
-                with col: 
-                    st.markdown(f"**{shoe_info['name']}**")
-                    st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
-        if 'Right' in joint and 'powers' in variable_key:
-            pow_cols=st.columns(3)
-            for col, (shoe_key,shoe_info) in zip(pow_cols,Shoes.items()):
-                right_p= get_series(data,variable_key,shoe_key,joint,axis)
-                pow=peak_power_gen(right_p)
-                with col: 
-                    st.markdown(f"**{shoe_info['name']}**")
-                    st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
+# if variable_key=='powers':
+#     with st.expander("Advanced Metrics", expanded=False):
+#         if 'Left' in joint and 'powers' in variable_key:
+#             pow_cols=st.columns(3)
+#             for col, (shoe_key,shoe_info) in zip(pow_cols,Shoes.items()):
+#                 left_p= get_series(data,variable_key,shoe_key,joint,axis)
+#                 pow=peak_power_gen(left_p)
+#                 with col: 
+#                     st.markdown(f"**{shoe_info['name']}**")
+#                     st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
+#         if 'Right' in joint and 'powers' in variable_key:
+#             pow_cols=st.columns(3)
+#             for col, (shoe_key,shoe_info) in zip(pow_cols,Shoes.items()):
+#                 right_p= get_series(data,variable_key,shoe_key,joint,axis)
+#                 pow=peak_power_gen(right_p)
+#                 with col: 
+#                     st.markdown(f"**{shoe_info['name']}**")
+#                     st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
 st.plotly_chart(fig, width='stretch')
 #* Angles
 if variable_key== 'angles':
@@ -164,12 +164,72 @@ if variable_key== 'moments':
     st.markdown('Moments are a complex representation of how much force is required to either stablize or mobilize a joint. Through a process called inverse\
                 dynamics, forces measured by the force plate are resolved to determine how much force is required at each joint depending on the angle of that joint,\
                 for that joint to remain stable. If greater moments are felt in the joints, especially those higher up the body like the knees and hips, than less force is\
-                being dissipated by the shoes, and the muscles are required to produce more force may lead to overuse injury over time.')
+                being dissipated by the shoes, and the muscles are required to produce more force may lead to overuse injury over time. Moments can increase\
+                or decrease either by increased/decreased force requirments, or changes in joint angle.')
     with st.expander('Spezial analysis'):
-        st.markdown('hold')
-
-
-
+        st.image('images/adidas_spezial')
+        st.markdown('The Spezial displayed the lowest joint moments of the three shoes at both the ankle and the knee. When the low angles and low comfort\
+                    observed are taken into account, the low moments observed are likely an adaptation made to reduce the moments about the joints due to\
+                     discomfort, rather than mechanical efficiency and should not necessarilly be considered positive.')
+    with st.expander('Relentless analysis'):
+        st.image('images/nike_relentless_2.jpg')
+        st.markdown('The Relentless 2 displayed the greatest joint moments across the 3 shoes. When comapring this to the results of the Pegasus Plus, across\
+                    similar joint angles this suggests that there was a greater force requirment from the muscles to stabilize the joints compared to the\
+                    Pegasus shoe, which may lead to a higher risk of oversue injury over time.')
+    with st.expander('Pegasus analysis'):
+        st.image('images/pegasus_plus')
+        st.markdown('The Pegasus Plus displayed joint moments between the Spezial and the Relentless 2 across all joints. Because the lower joint moments\
+                    observed with the spezial is not necessarilly considered to be a positive, the lower magnitude of joint moments in the Pegasus shoes compared\
+                    to the Relentless 2 suggests that the Pegasus shoe is recommended based on joint moment outputs.')
+#*
+if variable_key == 'powers':
+    st.markdown('The power plots represent whether the ankle is generating power for propulsion or absorbing energy during landing. A higher power absorption\
+                 is represented by a larger negative value in the power curve, and means that the muscles are working harder to absorb the load of the impact.\
+                Conversely, as power generation increases the muscles are working harder to generate propulsive forces.')
+    with st.expander('Spezial analysis'):
+        st.image('images/adidas_spezial')
+        st.markdown('The Spezial showed the lowest power generation and absorption of the three shoes. A key comparison here is with step length:\
+                     if a shoe were highly efficient, lower power output could still maintain step length because the shoe would be contributing to\
+                     propulsion. However, with the Spezial, both power output and step length were reduced together. This suggests the lower power was\
+                     not a sign of efficiency, but rather that the runner was subconsciously reducing effort to manage discomfort which would also\
+                     explain the shorter steps.')
+    with st.expander('Relentless analysis'):
+        st.image('images/nike_relentless_2.jpg')
+        st.markdown('The Nike Relentless 2 showed the greatest power generation and absorption of the three shoes. Despite this, when compared\
+                     to the Pegasus Plus, the Relentless produced a similar or slightly shorter step length. This means the runner was using considerably\
+                     more energy to cover roughly the same distance per step, which is a sign of lower mechanical efficiency. Based on the power and step\
+                     length data, the Relentless 2 is the least efficient of the two performance shoes.')
+    with st.expander('Pegasus analysis'):
+        st.image('images/pegasus_plus')
+        st.markdown('The Nike Pegasus Plus showed a power generation and absorption which was greater than the Adidas Spezial, but less than the\
+                    Nike Relentless 2. Because the Pegasus displayed a step length greater than the Spezial, the decreased magnitude of the power curve in the\
+                    Spezial should not be considered advantageous over the Pegasus shoe. Compared to the Relentless 2, the pegasus showed similar or greater step\
+                    length at a lower power requirement, suggesting this shoe provides superior efficicency and is recommended based on the power outputs.')
+#* GRF
+if variable_key=='grf':
+    st.markdown('GRF, or ground reaction force, represents the force being applied to the ground by the runner. A higher ground reaction force means that\
+                the runner is pushing into the ground with more force. A larger ground reaction force may mean that the runner is producing more force\
+                during their stride, but if this force is not dispersed in an efficient way, it may increase the force required at the joints to \
+                maintain stability.')
+    with st.expander('Spezial analysis'):
+        st.image('images/adidas_spezial')
+        st.markdown('The Adidas Spezial displayed the lowest ground reaction force of the 3 shoes. When considered in context with all other variables for this\
+                    shoe, it appears that the reduced ground reaction force is a result of altered mechancis to limit the strain placed on the joints due to\
+                    the level of discomfort during the run in this shoe. Additionally, the large width of the shaded band for this shoe suggests that there was\
+                    a large variation in how the ground was contacted, further suggesting that technique was modified over the course of the trial.')
+    with st.expander('Relentless analysis'):
+        st.image('images/nike_relentless_2.jpg')
+        st.markdown('The Relentless 2 produced ground reaction forces similar to the Pegasus Plus, meaning both shoes generated roughly the same amount\
+                     of force into the ground during running. However, the Relentless consistently required higher joint moments across all joints to\
+                     achieve this. In other words, the muscles had to work harder to resolve the same forces which is a sign of lower mechanical efficiency\
+                     compared to the Pegasus Plus.')
+    with st.expander('Pegasus analysis'):
+        st.image('images/pegasus_plus')
+        st.markdown('The Pegasus Plus displayed a ground reaction force greater than the Adidas Spezial, and similar to the Nike Reletnless 2. Becasue the\
+                    Spezial appears to display dcreased GRF due to altered technique, direct comparisons between the Pegasus and the Relentless are\
+                    warranted. The main comparison to be drawn is the relation of the simialr GRF outputs to the joint moment curves for these shoes.\
+                    The Pegasus Plus displayed consitently lower joint moments compared to the Relentless despite the similar GRF outputs, suggesting that the\
+                    Pegasus Plus offers a superior mechncial efficiency, and is therefore recommended based on the results of the GRF curves.')
 events = load_events()
 
 
