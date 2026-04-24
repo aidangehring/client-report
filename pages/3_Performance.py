@@ -79,6 +79,8 @@ if variable_key == 'powers':
     sign_note = 'Generation is positive, absorption is negative'
 elif variable_key == 'grf':
     sign_note = None
+elif 'Ankle' in joint and variable_key == 'moments':
+    sign_note = 'Plantarflexion is positive, dorsiflexion is negative'
 elif 'Ankle' in joint:
     sign_note = 'Dorsiflexion is positive, plantarflexion is negative'
 else:
@@ -131,7 +133,7 @@ if variable_key=='powers':
                     st.markdown(f"**{shoe_info['name']}**")
                     st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
 st.plotly_chart(fig, width='stretch')
-
+#* Angles
 if variable_key== 'angles':
     st.markdown("There are two considerations when navigating these angle plots. The first is the ranges of the average joint angles across the shoes.\
                 If this range is decreased, it is likely that the body subconciously employed a range of motion limitationa as a protection mechanism. This\
@@ -157,6 +159,16 @@ if variable_key== 'angles':
                     the entire session with this shoe, most likely in relation to the high level of comfort reported when running in this shoe.\
                      A normal range or joint angles and a low variation of these joint angles suggests that the pegasus plus resulted in a high level of\
                     mechancial efficiency, and this shoe can be recommended based on the joint angle data collected.")
+#* Moments
+if variable_key== 'moments':
+    st.markdown('Moments are a complex representation of how much force is required to either stablize or mobilize a joint. Through a process called inverse\
+                dynamics, forces measured by the force plate are resolved to determine how much force is required at each joint depending on the angle of that joint,\
+                for that joint to remain stable. If greater moments are felt in the joints, especially those higher up the body like the knees and hips, than less force is\
+                being dissipated by the shoes, and the muscles are required to produce more force may lead to overuse injury over time.')
+    with st.expander('Spezial analysis'):
+        st.markdown('hold')
+
+
 
 events = load_events()
 
