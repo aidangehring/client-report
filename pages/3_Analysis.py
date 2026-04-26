@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 from utils.data_loader import load_data, get_series, load_events
-from utils.config import variable_options, variable_config, Shoes, sagittal_info
+from utils.config import variable_options, variable_config, Shoes, sagittal_info, images_path
 import plotly.graph_objects as go
 from utils.metrics import peak_power_gen, step_lengths, cadence
 import pandas as pd
@@ -9,8 +9,10 @@ st.title("Performance")
 st.write("This page will analyse the performance of the 3 shoes based on kinetic and kinematic data collected during the testing sessions.\
          Because running, especially on a treadmill as was completed in this protocol, is predominantly involving forward progression this report\
          will mainly be focused on dorsiflexion/plantarflexion of the ankle and flexion/extension of the hip and knee joints. \
-         Detailed explanations for all of these movements can be explored using the appropriate buttons below.   \
-         A full breakdown including all planes of motion at each joint can be found at https://7115-footwear-repository-p99ez7xmgdwyfiq3psbpsk.streamlit.app/ .")
+         Detailed explanations for all of these movements can be explored using the appropriate buttons below.")
+with st.expander("For full transparency, raw data not included in this report has been prepped for visualisation as well, and can be viewed here."):
+    st.markdown("[View full dataset](https://7115-footwear-repository-p99ez7xmgdwyfiq3psbpsk.streamlit.app/)")
+    
 for movement in sagittal_info:
     with st.expander(f'What is {movement}?', expanded=False):
         st.image(sagittal_info[movement]['image'])
@@ -87,7 +89,7 @@ elif 'Ankle' in joint:
 else:
     sign_note = 'Flexion is positive'
 
-title_text = f'{movement_title} {variable_key.capitalize()}'
+title_text = f'{movement_title} {variable_options[variable_key]}'
 if sign_note:
     title_text += f'<br><sup>{sign_note}</sup>'
 fig.update_layout(title=title_text)
@@ -115,27 +117,28 @@ fig.update_layout(
 
 
 
-# if variable_key=='powers':
-#     with st.expander("Advanced Metrics", expanded=False):
-#         if 'Left' in joint and 'powers' in variable_key:
-#             pow_cols=st.columns(3)
-#             for col, (shoe_key,shoe_info) in zip(pow_cols,Shoes.items()):
-#                 left_p= get_series(data,variable_key,shoe_key,joint,axis)
-#                 pow=peak_power_gen(left_p)
-#                 with col: 
-#                     st.markdown(f"**{shoe_info['name']}**")
-#                     st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
-#         if 'Right' in joint and 'powers' in variable_key:
-#             pow_cols=st.columns(3)
-#             for col, (shoe_key,shoe_info) in zip(pow_cols,Shoes.items()):
-#                 right_p= get_series(data,variable_key,shoe_key,joint,axis)
-#                 pow=peak_power_gen(right_p)
-#                 with col: 
-#                     st.markdown(f"**{shoe_info['name']}**")
-#                     st.metric("Peak power output", f"{pow:.1f}W" if pow is not None else "N/A")
+
+
+events = load_events()
+rows = []
+for shoe_key, shoe_info in Shoes.items():
+    events_df = events.get(shoe_key)
+    if events_df is None:
+        continue
+    df = step_lengths(events_df)
+    left_steps = df[df['foot'] == 'L']
+    right_steps = df[df['foot'] == 'R']
+    rows.append({
+        'Shoe': shoe_info['name'],
+        'Left step length (m)': round(left_steps['step_length_m'].mean(), 3),
+        'Right step length (m)': round(right_steps['step_length_m'].mean(), 3),
+        'Cadence (spm)': cadence(events_df),
+        'Rating of perceived exertion (RPE)': shoe_info['RPE']
+    })
+
 st.plotly_chart(fig, width='stretch')
 #* Angles
-if variable_key== 'angles':
+if variable_key == 'angles':
     st.markdown("There are two considerations when navigating these angle plots. The first is the ranges of the average joint angles across the shoes.\
                 If this range is decreased, it is likely that the body subconciously employed a range of motion limitationa as a protection mechanism. This\
                 is typically seen when the shoe is uncomfortable/causing pain, or fatigue is setting in. The second consideration is the variablity of the\
@@ -161,7 +164,7 @@ if variable_key== 'angles':
                      A normal range or joint angles and a low variation of these joint angles suggests that the pegasus plus resulted in a high level of\
                     mechancial efficiency, and this shoe can be recommended based on the joint angle data collected.")
 #* Moments
-if variable_key== 'moments':
+if variable_key == 'moments':
     st.markdown('Moments are a complex representation of how much force is required to either stablize or rotate a joint. Through a process called inverse\
                 dynamics, forces measured at the force plate are resolved to determine how much force is required at each joint depending on the angle of that joint,\
                 for that joint to remain stable. If greater moments are felt in the joints, especially those higher up the body like the knees and hips, than less force is\
@@ -182,7 +185,7 @@ if variable_key== 'moments':
         st.markdown('The Pegasus Plus displayed joint moments between the Spezial and the Relentless 2 across all joints. Because the lower joint moments\
                     observed with the spezial is not necessarilly considered to be a positive, the lower magnitude of joint moments in the Pegasus shoes compared\
                     to the Relentless 2 suggests that the Pegasus shoe is recommended based on joint moment outputs.')
-#*
+#* Powers
 if variable_key == 'powers':
     st.markdown('The power plots represent whether the ankle is generating power for propulsion or absorbing energy during landing. A higher power absorption\
                  is represented by a larger negative value in the power curve, and means that the muscles are working harder to absorb the load of the impact.\
@@ -207,7 +210,7 @@ if variable_key == 'powers':
                     Spezial should not be considered advantageous over the Pegasus shoe. Compared to the Relentless 2, the pegasus showed similar or greater step\
                     length at a lower power requirement, suggesting this shoe provides superior efficicency and is recommended based on the power outputs.')
 #* GRF
-if variable_key=='grf':
+if variable_key == 'grf':
     st.markdown('GRF, or ground reaction force, represents the force being applied to the ground by the runner. A higher ground reaction force means that\
                 the runner is pushing into the ground with more force. A larger ground reaction force may mean that the runner is producing more force\
                 during their stride, but if this force is not dispersed in an efficient way, it may increase the force required at the joints to \
@@ -231,26 +234,47 @@ if variable_key=='grf':
                     warranted. The main comparison to be drawn is the relation of the simialr GRF outputs to the joint moment curves for these shoes.\
                     The Pegasus Plus displayed consitently lower joint moments compared to the Relentless despite the similar GRF outputs, suggesting that the\
                     Pegasus Plus offers a superior mechncial efficiency, and is therefore recommended based on the results of the GRF curves.')
-events = load_events()
 
-
-rows = []
-for shoe_key, shoe_info in Shoes.items():
-    events_df = events.get(shoe_key)
-    if events_df is None:
-        continue
-    df = step_lengths(events_df)
-    left = df[df['foot'] == 'L']
-    right = df[df['foot'] == 'R']
-    rows.append({
-        'Shoe': shoe_info['name'],
-        'Left step length (m)': round(left['step_length_m'].mean(), 3),
-        'Right step length (m)': round(right['step_length_m'].mean(), 3),
-        'Cadence (spm)': cadence(events_df),
-        'Rating of perceived exertion (RPE)': shoe_info['RPE']
-    })
+st.subheader("Metrics")
 if rows:
-    st.dataframe(pd.DataFrame(rows).set_index('Shoe'), width='content')
+    def color_metrics(row):
+        def color(val):
+            if 'step length' in row.name.lower():
+                if val <= 0.95:
+                    return 'background-color: #c0392b; color: white'
+                elif val <= 0.98:
+                    return 'background-color: #d4a017; color: white'
+                else:
+                    return 'background-color: #27ae60; color: white'
+            elif 'cadence' in row.name.lower():
+                if val >= 171:
+                    return 'background-color: #c0392b; color: white'
+                elif val >= 170:
+                    return 'background-color: #d4a017; color: white'
+                else:
+                    return 'background-color: #27ae60; color: white'
+            elif 'rpe' in row.name.lower():
+                if val >= 7:
+                    return 'background-color: #c0392b; color: white'
+                elif val == 6:
+                    return 'background-color: #d4a017; color: white'
+                else:
+                    return 'background-color: #27ae60; color: white'
+            return ''
+        return [color(v) for v in row]
+
+    df_metrics = pd.DataFrame(rows).set_index('Shoe').T
+    styled = (df_metrics.style
+        .apply(color_metrics, axis=1)
+        .format('{:.3f}', subset=pd.IndexSlice[['Left step length (m)', 'Right step length (m)'], :])
+        .format('{:.1f}', subset=pd.IndexSlice[['Cadence (spm)'], :])
+        .format('{:.0f}', subset=pd.IndexSlice[['Rating of perceived exertion (RPE)'], :])
+    )
+    st.dataframe(styled, use_container_width=True)
+with st.expander("RPE scale"):
+    st.image('images/borg_scale.avif')
+st.markdown('The metrics table outlines some color coordinated key values, where green is the best outcomes of the shoes, red the least optimal, and \
+            yellow in between these values. These ratings are used to help analyse the ouputs of the force and movement data. ')
 
 
 

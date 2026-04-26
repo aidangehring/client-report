@@ -8,9 +8,8 @@ st.set_page_config(page_title="Shoe Analysis", layout="wide")
 pg= st.navigation([
     st.Page("pages/1_overview.py", title="Overview"),
     st.Page("pages/2_Comfort.py", title="Comfort"),
-    st.Page("pages/3_Performance.py", title="Performance"),
-    st.Page("pages/4_Injury-Risk.py", title="Injury Risk"),
-    st.Page("pages/5_Recommendations.py", title="Recommendations")
+    st.Page("pages/3_Analysis.py", title="Performance"),
+    st.Page("pages/4_Recommendations.py", title="Recommendations")
 ])
 pg.run()
 
