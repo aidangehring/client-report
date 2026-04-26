@@ -270,7 +270,7 @@ if rows:
         .format('{:.1f}', subset=pd.IndexSlice[['Cadence (spm)'], :])
         .format('{:.0f}', subset=pd.IndexSlice[['Rating of perceived exertion (RPE)'], :])
     )
-    st.dataframe(styled, use_container_width=True)
+    st.dataframe(styled, width='stretch')
 with st.expander("RPE scale"):
     st.image('images/borg_scale.avif')
 st.markdown('The metrics table outlines some color coordinated key values, where green is the best outcomes of the shoes, red the least optimal, and \
