@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.config import images_path,Shoes
+from utils.config import Shoes
 
 st.title("Recommendations")
 st.write("Based on the results of this assesment my recommendations are as follows:")

@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 from utils.data_loader import load_data, get_series, load_events
-from utils.config import variable_options, variable_config, Shoes, sagittal_info, images_path
+from utils.config import variable_options, variable_config, Shoes, sagittal_info
 import plotly.graph_objects as go
 from utils.metrics import peak_power_gen, step_lengths, cadence
 import pandas as pd
