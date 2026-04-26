@@ -140,11 +140,12 @@ st.plotly_chart(fig, width='stretch')
 #* Angles
 if variable_key == 'angles':
     st.markdown("There are two considerations when navigating these angle plots. The first is the ranges of the average joint angles across the shoes.\
-                If this range is decreased, it is likely that the body subconciously employed a range of motion limitationa as a protection mechanism. This\
-                is typically seen when the shoe is uncomfortable/causing pain, or fatigue is setting in. The second consideration is the variablity of the\
+                If this range is decreased, it is likely that the body subconciously employed a range of motion limitation as a protection mechanism. This\
+                is typically seen when the shoe is uncomfortable/causing pain, or fatigue is setting in.")
+    st.markdown('The second consideration is the variablity of the\
                 joint angles across the trials, represented by the shaded region. If this shaded region becomes wider, it is likely that over the course of the session\
                 technique was altered in some way for the same reasons listed that may change the magnitude of the curves. With this in mind, analysis of the shoes\
-                can be made individually.")
+                can be made individually.')
     with st.expander("Spezial analysis"):
         st.image('images/adidas_spezial')
         st.markdown("The spezial showed a lower range of joint angles, and a wider spread of data than the other two shoes across the board. When this is\
@@ -236,6 +237,8 @@ if variable_key == 'grf':
                     Pegasus Plus offers a superior mechncial efficiency, and is therefore recommended based on the results of the GRF curves.')
 
 st.subheader("Metrics")
+st.markdown('The metrics table below outlines some color coordinated key values, where green is the best outcomes of the shoes, red the least optimal, and \
+            yellow in between these values. These ratings are used to help analyse the ouputs of the force and movement data. ')
 if rows:
     def color_metrics(row):
         def color(val):
@@ -273,8 +276,7 @@ if rows:
     st.dataframe(styled, width='stretch')
 with st.expander("RPE scale"):
     st.image('images/borg_scale.avif')
-st.markdown('The metrics table outlines some color coordinated key values, where green is the best outcomes of the shoes, red the least optimal, and \
-            yellow in between these values. These ratings are used to help analyse the ouputs of the force and movement data. ')
+
 
 
 

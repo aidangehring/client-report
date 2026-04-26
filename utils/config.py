@@ -5,9 +5,7 @@ import streamlit as st
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 assets_path = os.path.join(BASE_DIR, '..', 'assets')
 
-print("BASE_DIR:", BASE_DIR)
-print("assets_path:", os.path.abspath(assets_path))
-print("exists:", os.path.exists(assets_path))
+
 #%%
 images_path= "images/"
 dataframes= {}
@@ -114,7 +112,7 @@ athlete_info={
     'height': f'{client_height} m',
     'mass': f'{client_mass} kg',
     'skill level': 'Amateur',
-    'assessment goal': '"I want a shoe that is comfortable to run in, but also as I become a better runner a shoe that will provide me that will provide a \
+    'assessment goal': '"I want a shoe that is comfortable to run in, but also as I become a better runner a shoe that will provide me a \
         good level of performance. I am not necessarilly concerned about the price, but would prefer to save money if possible.\
         My goal is to eventually train to run a half marathon."'
 }

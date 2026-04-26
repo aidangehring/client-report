@@ -4,7 +4,7 @@ import pandas as pd
 
 st.title("Overview")
 st.write("This is an interactive report generated to guide you through the results of your assessment interactively. Please use the table of contents\
-         on the left to navigate the pages, and interact with th dropdowns as necessary \
+         on the left to navigate the pages, and interact with the dropdowns as necessary \
          to guide you through the information and anlysis that leads to my recommendations, and prepare any questions you may have for our meeting." )
 
 if "my_expander_open" not in st.session_state:
