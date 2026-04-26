@@ -10,7 +10,7 @@ with st.expander("The best choice overall:"):
     st.image('images/pegasus_plus')
     st.info('You considered the Pegasus plus to be the most comfortable, and requiring the least effort to maintain the speed of 10km/h on the treadmill according\
             to RPE. This agrees with the outcomes of the force and movement analysis, which suggests that the shoe resulted in the most mechanically efficient\
-            outputs of the three shoes. However, with a considerably steeper price point than the Nike Relentless 2, the value of the shoes would come\
+            outputs of the three shoes. However, with a considerably steeper price point than the Nike Relentless 2, the true value of the Pegasus Plus would come\
              through the ability of this shoe to keep up as you become a stronger runner and progress to longer distances.')
     
 with st.expander("The budget friendly option:"):
