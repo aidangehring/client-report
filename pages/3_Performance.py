@@ -8,8 +8,9 @@ import pandas as pd
 st.title("Performance")
 st.write("This page will analyse the performance of the 3 shoes based on kinetic and kinematic data collected during the testing sessions.\
          Because running, especially on a treadmill as was completed in this protocol, is predominantly involving forward progression this report\
-         will mainly be focused on dorsiflexion/plantarflexion of the ankle and flexion/extension of the hip and knee joints.\
-         Visuals and explanations for all of these movements can be explored using the appropriate buttons below.")
+         will mainly be focused on dorsiflexion/plantarflexion of the ankle and flexion/extension of the hip and knee joints. \
+         Detailed explanations for all of these movements can be explored using the appropriate buttons below.   \
+         A full breakdown including all planes of motion at each joint can be found at https://7115-footwear-repository-p99ez7xmgdwyfiq3psbpsk.streamlit.app/ .")
 for movement in sagittal_info:
     with st.expander(f'What is {movement}?', expanded=False):
         st.image(sagittal_info[movement]['image'])
@@ -161,8 +162,8 @@ if variable_key== 'angles':
                     mechancial efficiency, and this shoe can be recommended based on the joint angle data collected.")
 #* Moments
 if variable_key== 'moments':
-    st.markdown('Moments are a complex representation of how much force is required to either stablize or mobilize a joint. Through a process called inverse\
-                dynamics, forces measured by the force plate are resolved to determine how much force is required at each joint depending on the angle of that joint,\
+    st.markdown('Moments are a complex representation of how much force is required to either stablize or rotate a joint. Through a process called inverse\
+                dynamics, forces measured at the force plate are resolved to determine how much force is required at each joint depending on the angle of that joint,\
                 for that joint to remain stable. If greater moments are felt in the joints, especially those higher up the body like the knees and hips, than less force is\
                 being dissipated by the shoes, and the muscles are required to produce more force may lead to overuse injury over time. Moments can increase\
                 or decrease either by increased/decreased force requirments, or changes in joint angle.')
@@ -246,6 +247,7 @@ for shoe_key, shoe_info in Shoes.items():
         'Left step length (m)': round(left['step_length_m'].mean(), 3),
         'Right step length (m)': round(right['step_length_m'].mean(), 3),
         'Cadence (spm)': cadence(events_df),
+        'Rating of perceived exertion (RPE)': shoe_info['RPE']
     })
 if rows:
     st.dataframe(pd.DataFrame(rows).set_index('Shoe'), width='content')

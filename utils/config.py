@@ -11,8 +11,11 @@ print("exists:", os.path.exists(assets_path))
 images_path= "images/"
 dataframes= {}
 client_mass= 78
+client_height=1.78
 client_weight= client_mass*9.81
-treadmill_speed_ms = 10 / 3.6
+treadmill_speed_kmh=10
+treadmill_speed_ms = treadmill_speed_kmh / 3.6
+
 
 Shoes= {
     'Spezial': {
