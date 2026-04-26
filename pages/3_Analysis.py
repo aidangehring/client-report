@@ -5,7 +5,7 @@ from utils.config import variable_options, variable_config, Shoes, sagittal_info
 import plotly.graph_objects as go
 from utils.metrics import peak_power_gen, step_lengths, cadence
 import pandas as pd
-st.title("Performance")
+st.title("Analysis")
 st.write("This page will analyse the performance of the 3 shoes based on kinetic and kinematic data collected during the testing sessions.\
          Because running, especially on a treadmill as was completed in this protocol, is predominantly involving forward progression this report\
          will mainly be focused on dorsiflexion/plantarflexion of the ankle and flexion/extension of the hip and knee joints. \

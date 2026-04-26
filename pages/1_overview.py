@@ -3,7 +3,8 @@ from utils.config import Shoes, client_height, client_mass, treadmill_speed_kmh,
 import pandas as pd
 
 st.title("Overview")
-st.write("This is an interactive report generated to guide you through the results of your assessment interactively. Please use the dropdowns as necessary \
+st.write("This is an interactive report generated to guide you through the results of your assessment interactively. Please use the table of contents\
+         on the left to navigate the pages, and interact with th dropdowns as necessary \
          to guide you through the information and anlysis that leads to my recommendations, and prepare any questions you may have for our meeting." )
 
 if "my_expander_open" not in st.session_state:
@@ -21,7 +22,7 @@ with st.expander('Athlete profile'):
 with st.expander('The setup and protocol'):
     col_img, col_info = st.columns([1, 2])
     with col_img:
-        st.image(assessment_protocol['image'], use_container_width=True)
+        st.image(assessment_protocol['image'], width='stretch')
     with col_info:
         st.info(assessment_protocol['description'])
 
@@ -29,7 +30,7 @@ with st.expander('The shoes tested'):
     for i, (shoe_name, shoe_info) in enumerate(Shoes.items()):
         col_img, col_info = st.columns([1, 2])
         with col_img:
-            st.image(shoe_info['image'], use_container_width=True)
+            st.image(shoe_info['image'], width='stretch')
         with col_info:
             st.subheader(shoe_info['name'] )
             st.markdown(shoe_info['cost'])
